@@ -19,7 +19,7 @@
             text-align: center;
         }
         input {
-            margin-top: 4px;
+            margin-bottom: 16px;
         }
     </style>
 
@@ -32,6 +32,45 @@
     </div>
     
 
+
+    <script>
+        var password = document.getElementById('idPassword').value;
+        var points = 0;
+        var passLength = password.length;
+
+        password.addEventListener('keyup', (event) => {
+
+            if (/[A-Z]/.test(password)) {
+                points += 1;
+            } else if (/[a-z]/.test(password)) {
+                points += 1;
+            } else if (/[0-9]/.test(password)) {
+                points += 1;
+            } else if (/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(password)) {
+                points += 2;
+            } else if (passLength > 1) {
+                points += 1;
+            } else if (passLength > 6) {
+                points += 1;
+            } else if (passLength >= 10) {
+                points += 1;
+            } else if (passLength >= 12) {
+                points += 1;
+            } else if (passLength >= 14) {
+                points += 1;
+            }
+            return points;
+
+            switch(points) {
+                case points > 9:
+                    document.getElementById('idOut').innerText = 'O louco meu, senha ta boa bixo!';
+                    break;
+            }
+
+        })
+
+
+    </script>
     
 </body>
 </html>
