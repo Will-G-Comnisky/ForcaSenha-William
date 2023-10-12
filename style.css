@@ -10,9 +10,11 @@ body {
 }
 input {
     margin-bottom: 16px;
+    padding: 4px;
 }
 
 form i {
     margin-left: -30px;
     cursor: pointer;
+    width: 16px;
 }

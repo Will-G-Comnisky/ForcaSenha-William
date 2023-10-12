@@ -1,5 +1,5 @@
 
-var password = document.getElementById('idPassword').value;
+var password = document.getElementById('idPassword');
 var points = 0;
 var passLength = password.length;
 var togglePassword = document.getElementById('togglePassword');
@@ -20,40 +20,40 @@ form.addEventListener('submit', function (e) {
 });
 
 
-password.addEventListener('keyup', (event) => {
+password.addEventListener('keyup', () => {
+    let currentPassword = password.value;
+    let currentPassLenght = currentPassword.length;
 
-    if (/[A-Z]/.test(password)) {
-        points += 1;
-    } else if (/[a-z]/.test(password)) {
-        points += 1;
-    } else if (/[0-9]/.test(password)) {
-        points += 1;
-    } else if (/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(password)) {
-        points += 2;
-    } else if (passLength > 1) {
-        points += 1;
-    } else if (passLength > 6) {
-        points += 1;
-    } else if (passLength >= 10) {
-        points += 1;
-    } else if (passLength >= 12) {
-        points += 1;
-    } else if (passLength >= 14) {
-        points += 1;
+    if (currentPassword === "") {
+        points = 0;
+    }   else if (/[A-Z]/.test(currentPassword)) {
+            points += 1;
+        } else if (/[a-z]/.test(currentPassword)) {
+            points += 1;
+        } else if (/[0-9]/.test(currentPassword)) {
+            points += 1;
+        } else if (/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(currentPassword)) {
+            points += 2;
+        } else if (currentPassLenght > 1) {
+            points += 1;
+        } else if (currentPassLenght > 6) {
+            points += 1;
+        } else if (currentPassLenght >= 10) {
+            points += 1;
+        } else if (currentPassLenght >= 12) {
+            points += 1;
+        } else if (currentPassLenght >= 14) {
+            points += 1;
+        }
+
+    if (points > 9) {
+        document.getElementById('idOut').innerText = 'O louco meu, senha ta boa bixo!';
+    } else if (points > 5 && points <= 9) {
+        document.getElementById('idOut').innerText = 'É...ta mais ou menos, dá pra melhorar';
+    } else if (points <= 5) {
+        document.getElementById('idOut').innerText = 'Que isso? Tá fraco hein';
+    } else {
+        document.getElementById('idOut').innerText = 'Insira uma senha de forma válida';
     }
-    return points;
-
-    switch(points) {
-        case points > 9:
-            document.getElementById('idOut').innerText = 'O louco meu, senha ta boa bixo!';
-            break;
-        case 9 > points > 5:
-            document.getElementById('idOut').innerText = 'É...ta mais ou menos, dá pra melhorar';
-            break;
-        case points <= 5:
-            document.getElementById('idOut').innerText = '';
-            break;
-    }
-
 })
 
