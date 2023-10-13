@@ -1,8 +1,12 @@
 
+/* Coletando as variaveis globais de inicio, como o input da senha, a força da senha
+e o elemento i que seria o botão de deixar senha visivel 
+*/
 var password = document.getElementById('idPassword');
-var points = 0;
-var passLength = password.length;
+var strength = 0;
 var togglePassword = document.getElementById('togglePassword');
+
+// Realizando a função de mudar visibilidade de senha ao clicar no elemento i: 
 
 togglePassword.addEventListener("click", function () {
     // Usando o type para definir o input como password ou text
@@ -13,47 +17,59 @@ togglePassword.addEventListener("click", function () {
     this.classList.toggle("bi-eye");
 });
 
-// prevent form submit
-const form = document.querySelector("form");
-form.addEventListener('submit', function (e) {
-    e.preventDefault();
-});
-
-
-password.addEventListener('keyup', () => {
-    let currentPassword = password.value;
-    let currentPassLenght = currentPassword.length;
+// Realizando função para definir condições para incrementar a força da senha 
+function passStrength(currentPassword) {
+    let passLenght = currentPassword.length;
+    strength = 0;
 
     if (currentPassword === "") {
-        points = 0;
-    }   else if (/[A-Z]/.test(currentPassword)) {
-            points += 1;
-        } else if (/[a-z]/.test(currentPassword)) {
-            points += 1;
-        } else if (/[0-9]/.test(currentPassword)) {
-            points += 1;
-        } else if (/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(currentPassword)) {
-            points += 2;
-        } else if (currentPassLenght > 1) {
-            points += 1;
-        } else if (currentPassLenght > 6) {
-            points += 1;
-        } else if (currentPassLenght >= 10) {
-            points += 1;
-        } else if (currentPassLenght >= 12) {
-            points += 1;
-        } else if (currentPassLenght >= 14) {
-            points += 1;
-        }
+        strength = 0;
+    } 
 
-    if (points > 9) {
-        document.getElementById('idOut').innerText = 'O louco meu, senha ta boa bixo!';
-    } else if (points > 5 && points <= 9) {
-        document.getElementById('idOut').innerText = 'É...ta mais ou menos, dá pra melhorar';
-    } else if (points <= 5) {
-        document.getElementById('idOut').innerText = 'Que isso? Tá fraco hein';
+    if (passLenght > 1) {
+        strength++;
+    }
+    if (passLenght > 6) {
+        strength++;
+    }
+    if (passLenght >= 10) {
+        strength++;
+    }
+    if (passLenght >= 12) {
+        strength++;
+    }
+    if (passLenght >= 14) {
+        strength++;
+    }    
+    if (/[A-Z]/.test(currentPassword)) {
+        strength++; 
+    }
+    if (/[a-z]/.test(currentPassword)) {
+        strength++; 
+    }
+    if (/[0-9]/.test(currentPassword)) {
+        strength++; 
+    }
+    if (/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(currentPassword)) {
+        strength++; 
+    }
+    return strength;
+}
+
+// Realizando a função que a cada digitação (keyup) será executada, fazendo a verificação e mudando o output
+password.addEventListener('keyup', () => {
+    let currentPassword = password.value;
+    let saida = document.getElementById('idOut');
+    let strength = passStrength(currentPassword);
+
+    if (strength <= 5) {
+        saida.innerText = 'Que isso? Tá fraco hein.';      
+    } else if (strength > 5 && strength < 9) {
+        saida.innerText = 'É...ta mais ou menos, dá pra melhorar';
+    } else if (strength >= 9) {
+        saida.innerText = 'O louco meu, senha ta boa bixo!';
     } else {
-        document.getElementById('idOut').innerText = 'Insira uma senha de forma válida';
+        saida.innerText = 'Insira uma senha de forma válida';
     }
 })
 
