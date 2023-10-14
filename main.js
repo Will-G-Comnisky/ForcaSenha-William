@@ -40,12 +40,13 @@ function passStrength(currentPassword) {
     }
     if (passLenght >= 14) {
         strength++;
-    }    
+    }
+
     if (/[A-Z]/.test(currentPassword)) {
-        strength++; 
+        strength++;
     }
     if (/[a-z]/.test(currentPassword)) {
-        strength++; 
+        strength++;
     }
     if (/[0-9]/.test(currentPassword)) {
         strength++; 
@@ -61,15 +62,32 @@ password.addEventListener('keyup', () => {
     let currentPassword = password.value;
     let saida = document.getElementById('idOut');
     let strength = passStrength(currentPassword);
+    let div = document.getElementById('idContainerDiv');
 
-    if (strength <= 5) {
-        saida.innerText = 'Que isso? Tá fraco hein.';      
+    if (strength <= 5 && strength != 0) {
+        saida.innerText = 'Que isso? Tá fraco hein?!'; 
+        div.classList.remove('shadow-yellow');
+        div.classList.remove('shadow-green');  
+        div.classList.add('shadow-red');
     } else if (strength > 5 && strength < 9) {
-        saida.innerText = 'É...ta mais ou menos, dá pra melhorar';
+        saida.innerText = 'É...ta mais ou menos, dá pra melhorar...';
+        div.classList.remove('shadow-black');
+        div.classList.remove('shadow-red');
+        div.classList.remove('shadow-green');
+        div.classList.add('shadow-yellow');
     } else if (strength >= 9) {
-        saida.innerText = 'O louco meu, senha ta boa bixo!';
-    } else {
+        saida.innerText = 'O louco meu, agora a senha ta boa bixo!';
+        div.classList.remove('shadow-black');
+        div.classList.remove('shadow-red');
+        div.classList.remove('shadow-yellow');
+        div.classList.add('shadow-green');
+    } else if (strength == 0) {
         saida.innerText = 'Insira uma senha de forma válida';
+        div.classList.remove('shadow-red');
+        div.classList.remove('shadow-yellow');
+        div.classList.remove('shadow-green');
+        div.classList.add('shadow-black');
     }
+
 })
 
