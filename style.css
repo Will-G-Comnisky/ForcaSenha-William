@@ -10,6 +10,11 @@ body {
     justify-content: center; /* Centraliza horizontalmente */
     align-items: center; /* Centraliza verticalmente */
     min-height: 100vh; /* Garante que a div esteja centralizada em toda a altura da janela. */
+    background:
+    linear-gradient(rgb(0, 0, 0), transparent),
+    linear-gradient(to top left, rgb(25, 0, 255), transparent),
+    linear-gradient(to top right, rgb(0, 255, 255), transparent);
+background-blend-mode: screen;
 }
 h1 {
     font-size: 32px;
@@ -30,17 +35,17 @@ h1 {
 .shadow-red {
     box-shadow: rgb(255, 3, 3) 0px 54px 55px, rgb(255, 2, 2) 0px -12px 30px, rgb(255, 0, 0) 0px 4px 6px, rgb(248, 4, 4) 0px 12px 13px, rgb(255, 0, 0) 0px -3px 5px;
     border: 3px solid red;
-    background-color: rgba(206, 75, 75, 0.205);
+    background-color: rgba(206, 75, 75, 0.658);
 }
 .shadow-yellow {
     box-shadow: rgb(255, 217, 0) 0px 54px 55px, rgb(255, 217, 0) 0px -12px 30px, rgb(255, 217, 0) 0px 4px 6px, rgb(255, 217, 0) 0px 12px 13px, rgb(255, 217, 0) 0px -3px 5px;
     border: 3px solid yellow;
-    background-color: rgba(221, 174, 46, 0.205);
+    background-color: rgba(221, 174, 46, 0.655);
 }
 .shadow-green {
     box-shadow: rgb(45, 143, 0) 0px 54px 55px, rgb(45, 143, 0) 0px -12px 30px, rgb(45, 143, 0) 0px 4px 6px, rgb(45, 143, 0) 0px 12px 13px, rgb(45, 143, 0) 0px -3px 5px;
     border: 3px solid green;
-    background-color: rgba(26, 150, 14, 0.205);
+    background-color: rgba(26, 150, 14, 0.655);
 }
 input {
     margin-bottom: 16px;
